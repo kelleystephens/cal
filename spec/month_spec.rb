@@ -3,13 +3,13 @@ require_relative '../lib/month'
 RSpec.describe Month do
   context ".header" do
 
-    it "should match cal for December 2012" do
-      month = Month.new(12, 2012)
+    it "should match cal for December 2013" do
+      month = Month.new(12, 2013)
       month.header.should == "   December 2013"
     end
 
-    it "should match cal for July 1901" do
-      month = Month.new(12, 2012)
+    it "should match cal for July 2017" do
+      month = Month.new(07, 2017)
       month.header.should == "     July 2017"
     end
   end
