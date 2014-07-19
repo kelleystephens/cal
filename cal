@@ -1,7 +1,45 @@
 #!/usr/bin/env ruby
 
 #require relative to current directory
+require_relative 'lib/year'
 require_relative 'lib/month'
 
-month = Month.new
-puts month.to_s
+#ARGV gets input from command line
+
+# only year is given
+if ARGV.length == 1
+  year = ARGV[0].to_i
+
+# year is outside of range
+  if year < 1800 || year >= 3001
+    puts "cal: year #{year} is not in range (1800..3000)"
+
+# year is given correctly
+  else
+    year = Year.new(year)
+    puts year.to_s
+  end
+
+# day, month & year all given
+elsif ARGV.length >= 3
+  puts "usage: cal [month] year"
+
+# month and year given
+else
+  month = ARGV[0].to_i
+  year = ARGV[1].to_i
+
+# month given over 12
+  if month >= 13
+    puts "cal: #{month} is not a month number (1..12)"
+
+# year given not in range
+  elsif year < 1800 || year >= 3001
+    puts "cal: year #{year} is not in range (1800..3000)"
+
+# month & year correct
+  else
+    month = Month.new(month, year)
+    puts month.to_s
+  end
+end
