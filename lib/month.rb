@@ -49,10 +49,7 @@ class Month
         if day == nil
           day = "  "
         else
-          if day < 10
-            day = " " + day.inspect
-          end
-          day
+          day < 10 ? " " + day.inspect : day
         end
       end
       week = week.join(" ")
@@ -72,38 +69,50 @@ class Month
       index += 1
       d +=1
     end
-    7.times do
-      arr[1].push(d)
-      d += 1
-    end
-    7.times do
-      arr[2].push(d)
-      d += 1
-    end
-    7.times do
-      if d <= length
-        arr[3].push(d)
-        d += 1
-      else
-        arr[4].push(nil)
+    num = 1
+    5.times do
+      7.times do
+        if d <= length
+          arr[num].push(d)
+          d += 1
+        else
+          arr[num].push(nil)
+        end
       end
+      num += 1
     end
-    7.times do
-      if d <= length
-        arr[4].push(d)
-        d += 1
-      else
-        arr[4].push(nil)
-      end
-    end
-    7.times do
-      if d <= length
-        arr[5].push(d)
-        d += 1
-      else
-        arr[5].push(nil)
-      end
-    end
+    # 7.times do
+    #   arr[1].push(d)
+    #   d += 1
+    # end
+    # 7.times do
+    #   arr[2].push(d)
+    #   d += 1
+    # end
+    # 7.times do
+    #   if d <= length
+    #     arr[3].push(d)
+    #     d += 1
+    #   else
+    #     arr[3].push(nil)
+    #   end
+    # end
+    # 7.times do
+    #   if d <= length
+    #     arr[4].push(d)
+    #     d += 1
+    #   else
+    #     arr[4].push(nil)
+    #   end
+    # end
+    # 7.times do
+    #   if d <= length
+    #     arr[5].push(d)
+    #     d += 1
+    #   else
+    #     arr[5].push(nil)
+    #   end
+    # end
     arr
   end
 end
