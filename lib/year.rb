@@ -1,7 +1,6 @@
 require_relative "month"
 
 class Year
-  # include Comparable
 
   def initialize(year)
     @year = year
@@ -9,6 +8,10 @@ class Year
 
   def year_header
     "#{@year}".center(62).rstrip
+  end
+
+  def leap?
+   (@year % 4 == 0) && (@year % 100 != 0) || (@year % 400 == 0)
   end
 
   def month_header(months)

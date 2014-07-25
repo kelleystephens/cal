@@ -19,19 +19,14 @@ class Month
 
   def length
     length = 30 + (@month + (@month/8).floor) % 2
-
     if @month == 2
-      if (@year % 4 == 0) && (@year % 100 != 0) || (@year % 400 == 0) #Is leap Year?
-        length -= 1
-      else
-        length -= 2
-      end
+      Year.new(@year).leap? ? length -= 1 : length -= 2
     end
     length
   end
 
   def month_layout
-    month_array = [[], [], [], [], [], []]
+    month_array = Array.new(6, [])
     month_array = week_array(month_array)
     month_array
   end
