@@ -14,19 +14,12 @@ class Year
    (@year % 4 == 0) && (@year % 100 != 0) || (@year % 400 == 0)
   end
 
-  def month_header(months)
-    months.each do |m|
-      month = Month.new(m, @year)
-      name = month.name
-      if m % 3 != 0
-      name = name.center(20) + "  "
-        @yr << name
-      else
-        spaces = (20 - name.size) / 2
-        name = " " * spaces + name + "\n"
-        @yr << name
-      end
-      @yr
+  def month_header(num)
+    case num
+      when 0 then "      January               February               March\n"
+      when 1 then "       April                  May                   June\n"
+      when 2 then "        July                 August              September\n"
+      else "      October               November              December\n"
     end
   end
 
@@ -60,13 +53,11 @@ class Year
   def to_s
     @yr = year_header << "\n\n"
     a = 1
-    4.times do
-      x = 0
-      month_header([a, a + 1, a + 2])
+    4.times do |x|
+      @yr << month_header(x)
       @yr << week_days
-      6.times do
-        d = days(x, [a, a + 1, a + 2])
-        x += 1
+      6.times do |i|
+        d = days(i, [a, a + 1, a + 2])
         @yr << d
       end
       a += 3
