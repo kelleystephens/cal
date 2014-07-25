@@ -1,17 +1,12 @@
 require_relative "zellers_congruence"
 
 class Month
-  include Comparable
 
   MONTHS = [nil, "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 
   def initialize(month, year)
     @month = month
     @year = year
-  end
-
-  def <=>(other)
-    self <=> other
   end
 
   def header
@@ -26,7 +21,7 @@ class Month
     length = 30 + (@month + (@month/8).floor) % 2
 
     if @month == 2
-      if (@year % 4 == 0) && (@year % 100 != 0) || (@year % 400 == 0)
+      if (@year % 4 == 0) && (@year % 100 != 0) || (@year % 400 == 0) #Is leap Year?
         length -= 1
       else
         length -= 2
@@ -61,58 +56,24 @@ class Month
   private
 
   def week_array(arr)
-    d = 1
     index = ZellersCongruence.calculate(@month, @year)
-    x = 7 - index
-    x.times do
-      arr[0].insert(index, d)
+    day_count = 7 - index
+    day_count.times do |i|
+      arr[0].insert(index, i + 1)
       index += 1
-      d +=1
     end
-    num = 1
-    5.times do
+    d = day_count + 1
+    5.times do |x|
+      x += 1
       7.times do
         if d <= length
-          arr[num].push(d)
+          arr[x].push(d)
           d += 1
         else
-          arr[num].push(nil)
+          arr[x].push(nil)
         end
       end
-      num += 1
     end
-    # 7.times do
-    #   arr[1].push(d)
-    #   d += 1
-    # end
-    # 7.times do
-    #   arr[2].push(d)
-    #   d += 1
-    # end
-    # 7.times do
-    #   if d <= length
-    #     arr[3].push(d)
-    #     d += 1
-    #   else
-    #     arr[3].push(nil)
-    #   end
-    # end
-    # 7.times do
-    #   if d <= length
-    #     arr[4].push(d)
-    #     d += 1
-    #   else
-    #     arr[4].push(nil)
-    #   end
-    # end
-    # 7.times do
-    #   if d <= length
-    #     arr[5].push(d)
-    #     d += 1
-    #   else
-    #     arr[5].push(nil)
-    #   end
-    # end
     arr
   end
 end
