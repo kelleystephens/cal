@@ -51,17 +51,17 @@ class Year
   end
 
   def to_s
-    @yr = year_header << "\n\n"
+    full_year = year_header << "\n\n"
     a = 1
     4.times do |x|
-      @yr << month_header(x)
-      @yr << week_days
+      full_year << month_header(x)
+      full_year << week_days
       6.times do |i|
         d = days(i, [a, a + 1, a + 2])
-        @yr << d
+        full_year << d
       end
       a += 3
     end
-    @yr
+    full_year
   end
 end
