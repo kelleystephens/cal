@@ -36,7 +36,7 @@ class Month
     output << "\nSu Mo Tu We Th Fr Sa\n"
     month_layout.each do |week|
       week.map! do |day|
-        day == nil ? "  " : (day.to_i < 10 ? " " + day.inspect : day)
+        day == nil ? "  " : day.to_i < 10 ? " " + day.inspect : day
       end
       output << week.join(" ") + "\n"
     end

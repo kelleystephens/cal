@@ -52,16 +52,12 @@ class Year
 
   def to_s
     full_year = year_header << "\n\n"
-    a = 1
     4.times do |x|
-      full_year << month_header(x)
-      full_year << week_days
-      6.times do |i|
-        x == 0 ? x == 1 : x == 1 ? x == 4 : x == 2 ? x == 7 : x == 10
-        d = days(i, [a, x + 1, x + 2])
-        full_year << d
+      full_year << month_header(x) << week_days
+      6.times do |index|
+        x == 0 ? mth_num = 1 : x == 1 ? mth_num = 4 : x == 2 ? mth_num = 7 : mth_num = 10
+        full_year << days(index, [mth_num, mth_num + 1, mth_num + 2])
       end
-      a += 3
     end
     full_year
   end
