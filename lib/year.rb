@@ -29,9 +29,9 @@ class Year
 
   def days(index, nums)
     line = ""
-    m = [Month.new(nums[0], @year), Month.new(nums[1], @year), Month.new(nums[2], @year)]
-    m.each do |mth|
-      arr = mth.month_layout
+    month_group = [Month.new(nums[0], @year), Month.new(nums[1], @year), Month.new(nums[2], @year)]
+    month_group.each do |month|
+      arr = month.month_layout
       arr = arr[index].map do |i|
         if i == nil
           i = "\s\s"
