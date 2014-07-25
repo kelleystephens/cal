@@ -41,14 +41,9 @@ class Month
     output << "\nSu Mo Tu We Th Fr Sa\n"
     month_layout.each do |week|
       week.map! do |day|
-        if day == nil
-          day = "  "
-        else
-          day < 10 ? " " + day.inspect : day
-        end
+        day == nil ? "  " : (day < 10 ? " " + day.inspect : day)
       end
-      week = week.join(" ")
-      output << week + "\n"
+      output << week.join(" ") + "\n"
     end
     output
   end
@@ -62,13 +57,13 @@ class Month
       arr[0].insert(index, i + 1)
       index += 1
     end
-    d = day_count + 1
+    day_count += 1
     5.times do |x|
       x += 1
       7.times do
-        if d <= length
-          arr[x].push(d)
-          d += 1
+        if day_count <= length
+          arr[x].push(day_count)
+          day_count += 1
         else
           arr[x].push(nil)
         end
