@@ -57,7 +57,8 @@ class Year
       full_year << month_header(x)
       full_year << week_days
       6.times do |i|
-        d = days(i, [a, a + 1, a + 2])
+        x == 0 ? x == 1 : x == 1 ? x == 4 : x == 2 ? x == 7 : x == 10
+        d = days(i, [a, x + 1, x + 2])
         full_year << d
       end
       a += 3
