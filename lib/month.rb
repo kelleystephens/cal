@@ -28,7 +28,6 @@ class Month
   def month_layout
     month_array = Array.new(6) {Array.new}
     month_array = week_array(month_array)
-    month_array
   end
 
   def to_s

@@ -32,22 +32,12 @@ class Year
     month_group = [Month.new(nums[0], @year), Month.new(nums[1], @year), Month.new(nums[2], @year)]
     month_group.each do |month|
       arr = month.month_layout
-      arr = arr[index].map do |i|
-        if i == nil
-          i = "\s\s"
-        elsif i.to_i < 10
-          i = " #{i}"
-        else
-          i
-        end
-        i
+      arr[index].map! do |i|
+        i == nil ? i = "\s\s" : i.to_i < 10 ? i = " #{i}" : i
       end
-      arr = arr.join(" ")
-      line << arr << "  "
+      line << arr[index].join(" ") << "  "
     end
-    line = line.rstrip
-    line << "\n"
-    line
+    line = line.rstrip << "\n"
   end
 
   def to_s
