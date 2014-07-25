@@ -19,7 +19,7 @@ class Year
       month = Month.new(m, @year)
       name = month.name
       if m % 3 != 0
-        name = name.center(20) + "  "
+      name = name.center(20) + "  "
         @yr << name
       else
         spaces = (20 - name.size) / 2
@@ -31,7 +31,7 @@ class Year
   end
 
   def week_days
-    week_days = "Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa\n"
+    "Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa\n"
   end
 
   def days(index, nums)

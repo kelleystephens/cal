@@ -26,7 +26,7 @@ class Month
   end
 
   def month_layout
-    month_array = Array.new(6, [])
+    month_array = Array.new(6) {Array.new}
     month_array = week_array(month_array)
     month_array
   end
@@ -36,7 +36,7 @@ class Month
     output << "\nSu Mo Tu We Th Fr Sa\n"
     month_layout.each do |week|
       week.map! do |day|
-        day == nil ? "  " : (day < 10 ? " " + day.inspect : day)
+        day == nil ? "  " : (day.to_i < 10 ? " " + day.inspect : day)
       end
       output << week.join(" ") + "\n"
     end
